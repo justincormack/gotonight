@@ -1,0 +1,485 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Build, Ship, Run Unikernels</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+</head>
+<body class="list">
+	<style>
+#Cover p.author {font-size: 200%;}
+</style>
+	<header class="caption">
+		<h1>Build, Ship, Run Unikernels</h1>
+		<p>Justin Cormack</p>
+	</header>
+	<section class="slide cover" id="Cover"><div>
+		<h2>Build, Ship, Run Unikernels</h2>
+		<p>Justin Cormack</p>
+		<img src="pictures/steampowerstation.jpg" alt="" width="100%">
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+			-->
+		<style>
+			#Cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+				}
+			#Cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+				}
+				#Cover p a {
+					color:#FFF;
+					}
+				a.linked { text-decoration: none; color: #fff; border: none;}
+                span.strike { text-decoration: line-through;}
+                .pic img { max-width:90%; height:90%; max-height: 90%;}
+                .pic a { text-decoration: none; color: #fff;}
+				.shiftimage { position: relative; top: -40px; left: 100px;}
+				.floatimage { float: right;}
+		</style>
+	</div></section>
+
+<section class="slide">
+<div>
+<h2>Justin Cormack</h2>
+<p>Cambridge based developer at Docker <a href="https://twitter.com/justincormack">@justincormack</a>
+<br/>&nbsp;
+	<img src="pictures/vector_h.svg" alt="" width="100%">
+</div>
+</section>
+
+<section class="slide">
+<div>
+<p>Co-author of <a href="https://www.safaribooksonline.com/library/view/docker-in-the/9781939902184/">Docker in the Trenches: Successful Production Deployment</a>
+<!--br/>
+50% discount code <a href="https://gum.co/lQGH/softwarecircus">https://gum.co/lQGH/softwarecircus</a-->
+<br/>
+<a href="https://www.safaribooksonline.com/library/view/docker-in-the/9781939902184/" class="linked"><img src="pictures/docker_cover.png" width="40%"/></a>
+</div>
+</section>
+
+<section class="slide shout">
+<div>
+<h2>containers</h2>
+</div>
+</section>
+
+<section class="slide pic">
+<div>
+<a href="https://commons.wikimedia.org/wiki/File:Container_ship_Hanjin_Taipei.jpg">
+<img src="pictures/Container_ship_Hanjin_Taipei.jpg"/>
+</a>
+</div>
+</section>
+
+<section class="slide">
+<div>
+	<ul>
+		<li>“Linux containers are an operating-system-level virtualization environment for running multiple isolated Linux systems on a single
+			Linux control host”
+		<li>“Building on top of facilities provided by the Linux kernel, a Docker container, unlike a virtual machine, does not require or include a separate
+			operating system. Instead, it relies on the kernel's functionality and uses resource isolation and separate
+			namespaces to isolate the application's view of the operating system.”
+	</ul>
+</div>
+</section>
+
+<section class="slide pic">
+<div>
+<img src="pictures/containerspec.png"/>
+</div>
+</section>
+
+<section class="slide pic">
+<div>
+<img src="pictures/crane.jpg"/>
+</div>
+</section>
+
+<section class="slide pic">
+<div>
+<a href="https://commons.wikimedia.org/wiki/File:BNSF_5216_West_Kingman_Canyon_AZ_(293094839).jpg">
+<img src="pictures/containertrain.jpg"/>
+</a>
+</div>
+</section>
+
+<section class="slide pic">
+<div>
+<a href="http://www.amazon.co.uk/The-Box-Shipping-Container-Smaller/dp/0691136408">
+<img src="pictures/thebox.jpg"/>
+</a>
+</div>
+</section>
+
+<section class="slide">
+<div>
+	<p>
+<p>“Docker containers wrap up a piece of software in a complete filesystem that contains everything it needs to run: code, runtime, system tools,
+	system libraries &ndash; anything you can install on a server. This guarantees that it will always run the same, regardless of the environment it is
+	running in.” <a href="https://www.docker.com/what-docker">https://www.docker.com/what-docker</a>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<img src="pictures/microsoft.svg" width="50%"/>
+<img src="pictures/freebsd.png" width="50%"/>
+<img src="pictures/tux.svg" height="60%" style="padding-left:30px"/>
+</div>
+</section>
+
+
+<section class="slide">
+<div>
+<h2>automation, repeatability, reliability</h2>
+<ul>
+<li>Repeatable builds
+<li>Ship one artifact
+<li>Do not depend on the runtime environment
+<li>Standard reusable tooling
+<li>Build, test, run pipeline with one container shipped through it
+</ul>
+</div>
+</section>
+
+<section class="slide shout">
+<div>
+<h2>unikernels</h2>
+</div>
+</section>
+
+<section class="slide">
+<div>
+	<p>
+	<ul>
+<li>“Unikernels are specialised, single-address-space machine images constructed by using library operating systems.”
+<li>“Unikernels are self contained applications that bundle all their dependencies, and only their dependencies.”
+<li>Containers bundle most dependencies, but rely on the kernel the host is running. Unikernels bundle everything.
+</ul>
+</div>
+</section>
+
+<section class="slide pic">
+<div>
+<img src="pictures/servers_pets_or_cattle.jpg"/>
+</div>
+</section>
+
+<section class="slide pic">
+<div>
+<a href="https://commons.wikimedia.org/wiki/File:Karner_blue,_M,_side,_2013-01-31-14.26_(8434430964).jpg">
+<img src="pictures/butterfly.jpg"/>
+</a>
+</div>
+</section>
+
+<section class="slide pic">
+<div>
+<a href="https://commons.wikimedia.org/wiki/File:Hairy_caterpillar_(Costa_Rica).jpg">
+<img src="pictures/Hairy_caterpillar.jpg"/>
+</a>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<a href="https://commons.wikimedia.org/wiki/File:Iceberg.jpg" class="linked floatimage" width="500px">
+	<img src="pictures/iceberg.jpg" width="60%" />
+</a>
+<p>Code you want to&nbsp;run
+				<p>&nbsp;
+	<p>Code your OS includes
+</div>
+</section>
+
+<section class="slide">
+<div>
+	<p>Currently Linux has over 25 million lines of code...</p>
+<img src="pictures/linuxcodelines.png" width="100%"/>
+<p>... and Windows has 50 million.
+</div>
+</section>
+
+
+<section class="slide pic">
+<div>
+	<a style="float:right;" >
+<img src="pictures/cthulhu.jpg" width="70%"/>
+</a>
+		<p>&nbsp;
+<p>Code you want to run
+		<p>&nbsp;
+	<p>Code your OS includes
+</div>
+</section>
+
+<section class="slide">
+<div>
+	<h2>Unikernels</h2>
+<ul>
+<li>First cut down on the amount of operating system dependencies lurking under your code.
+<li>Just link exactly what you need as libraries, eg tcp, filesystems, etc
+<li>Then they can also make that code less scary.
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>A security hardened container</h2>
+<ul>
+<li>No large OS attack surface
+<li>Just what you need, no extra shell or other executables, so small attack surface
+<li>Can run inside virtual machine for sandboxing
+<li>Language guarantees, like type safety and memory safety
+<li>Can use additional sandboxing techniques: ASLR, NaCl etc
+<li>Whole system hardening
+<li>Ideal for embedded systems
+</ul>
+</div>
+</section>
+
+
+<section class="slide shout">
+<div>
+<h2>Making systems programming less scary</h2>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<img src="pictures/systemspeople.png" height="100%"/>
+</div>
+</section>
+
+
+<section class="slide">
+<div>
+<ul>
+<li>Systems programming is unusually difficult compared to other forms of programming
+<li>OS development and design are the pinnacle or programming achievement, and the highest calling for any programmer
+<li>Systems programmers are inherently superior to other kinds of programmers
+<li>A competent systems programmer will naturally be gifted in all other forms of programming
+</ul>
+<p>I find these assumptions laughable. &ndash; <a href="http://c2.com/cgi/wiki?CultOfSystemsProgramming">Jay Osako</a>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<ul>
+<li>Systems programming has a huge amount of technical debt
+<li>Operating systems are huge, not very modular.
+<li>Rebuilding with modern agile development is not as hard as people pretend.
+<li>Easier when not working inside a kernel in C.
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>New simpler, more secure stacks in high level languages</h2>
+<ul>
+<li>Static typing
+<li>Memory safety
+<li>Use of formal methods
+<li>zero-cost abstractions
+<li>Test driven development
+<li>Fuzz testing
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>Rust</h2>
+        <img src="pictures/rust-logo-blk.svg" class="floatimage" width="40%"/>
+<ul>
+<li>zero-cost abstractions
+<li>guaranteed memory safety
+<li>threads without data races
+<li>type inference
+<li>minimal runtime
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>Go</h2>
+        <img src="pictures/gopher.png" class="floatimage" width="40%"/>
+<ul>
+<li>From the Plan 9 operating system heritage
+<li>memory safety
+<li>strong distributed programming libraries
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>OCaml</h2>
+        <img src="pictures/ocaml.svg" class="floatimage" width="40%"/>
+<ul>
+<li>Functional language
+<li>Full network stack implemented from TCP to SSL
+<li>Memory and type safe
+</ul>
+</div>
+</section>
+
+
+<section class="slide">
+<div>
+<ul>
+	<li>Haskell
+	<li>C++
+	<li>LuaJIT
+	<li>Elixir
+	<li>JavaScript
+	<li>Swift
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>Examples of unikernels</h2>
+<ul>
+<li><a href="https://mirage.io/">Mirage</a> OCaml
+<li><a href="http://www.includeos.org/">IncludeOS</a> C++
+<li><a href="https://galois.com/project/halvm/">HalVM</a> Haskell
+<li><a href="http://erlangonxen.org/">Ling</a> Erlang
+<li><a href="http://runtimejs.org/">runtime.js</a> JavaScript
+<li><a href="http://cnp.neclab.eu/clickos/">ClickOS</a> C++
+<li><a href="http://rumpkernel.org/">Rumprun</a> C
+</ul>
+</div>
+</section>
+
+
+<section class="slide shout">
+<div>
+<h2>how to get there?</h2>
+</div>
+</section>
+
+<section class="slide">
+<div>
+	<ul>
+<li>hack on some systems code
+<li>implement protocols
+<li>apply modern tools, processes, languages, methods
+<li>have fun
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<ul>
+<li>Reduce dependency on OS
+<li>Don't shell out to command line
+<li>Write portable code
+<li>Just ship applications
+<li>Do not try to introspect your environment
+</ul>
+</div>
+</section>
+
+
+<section class="slide">
+<div>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Container with Ubuntu<br> Container with Alpine Linux<br> Linux ABI-compatible fat Unikernel<br> slim Unikernel</p>&mdash; Zvi (@nivertech) <a href="https://twitter.com/nivertech/status/703932160324071424">February 28, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+</section>
+
+
+
+<section class="slide shout">
+<div>
+<h2>Build, Ship, Run</h2>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<p>Unikernels are still at the stage that Linux containers were three years ago before Docker
+<ul>
+<li>Few users
+<li>Hard to build
+<li>Hard to ship
+<li>Hard to run
+</ul>
+<p>Clearly this needs to be fixed for widespread use...
+</div>
+</section>
+
+<section class="slide">
+<div>
+<p>Unikernels are being used in production
+<ul>
+<li>Specialist use cases
+<li>Classified
+<li>Networking devices
+<li>Easrly adopters
+</ul>
+<p>Clearly this needs to be fixed for widespread use...
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>Unikernel.org</h2>
+<ul>
+<li>Common community to share tooling, code and tests
+<li>Working on ways to reuse existing code across languages
+<li>Working on standard configuration and other layers
+<li>Take the learnings from Mirage and apply more broadly.
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>Integrating unikernels into Docker</h2>
+<ul>
+<li>Build: Dockerized toolchains
+<li>Ship: Artifacts on Docker Hub
+<li>Run: Same commands to run unikernels as containers
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>Questions?</h2>
+<ul>
+<li><a href="https://twitter.com/justincormack">@justincormack</a>
+<li>justin.cormack@docker.com
+<p>&nbsp;
+	<img src="pictures/vector_h.svg" alt="" width="100%"/>
+</div>
+</section>
+
+
+	<p class="badge"><a href="https://github.com/justincormack/qconlondon2016">Fork me on Github</a></p>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"><div></div></div>
+	<script src="shower/shower.min.js"></script>
+</html>
